@@ -1,0 +1,23 @@
+<h1>Mini-Trello Develop Todo</h1>
+<% if current_user %>
+    <p><%= current_user.username %> | <%= link_to "登出", :logout, method: "delete" %></p>
+<% else %>
+    <p><%= link_to "登录", :login %>|<%= link_to "注册", :signup %></p>
+<% end %>
+<ul>
+    <li>用户系统(Users)</li>
+    <ul>
+        <li><del>注册</del></li>
+        <li><del>登录</del></li>
+        <li><del>登出</del></li>
+        <li>测试</li>
+        <li>权限分配</li>
+    </ul>
+    <li>看板(Boards)</li>
+    <li>列表(Lists)</li>
+    <li>卡片(Cards)</li>
+    <li>卡片留言讨论(CardComments)</li>
+    <li>活动通知</li>
+</ul>
+
+
