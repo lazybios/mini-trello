@@ -1,0 +1,8 @@
+<h1>创建列表</h1>
+<%= form_for @list, url: board_lists_path(@board) do |f| %>
+    <p>名字</p>
+    <p><%= f.text_field :title %></p>
+    <p>位置</p>
+    <p><%= f.text_field :position %></p>
+    <p><%= f.submit "创建"%></p>
+<% end %>

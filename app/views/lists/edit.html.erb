@@ -1,0 +1,8 @@
+<h1>列表信息编辑</h1>
+<%= form_for @list, url: board_list_path(@board, @list) do |f| %>
+    <p>名字</p>
+    <p><%= f.text_field :title %></p>
+    <p>位置</p>
+    <p><%= f.text_field :position %></p>
+    <p><%= f.submit "更新"%></p>
+<% end %>

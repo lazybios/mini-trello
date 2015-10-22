@@ -1,0 +1,9 @@
+<%= form_for @board do |f| %>
+    <p>看板名字</p>
+    <p><%= f.text_field :name %></p>
+    <p>看板描述</p>
+    <p><%= f.text_area :description, size: '30x10' %></p>
+    <p>看板权限</p>
+    <p><%= f.select :permission, options_for_select([['公开', 'public'], ['私有', 'private']]) %></p>
+    <p><%= f.submit "更新" %></p>
+<% end %>

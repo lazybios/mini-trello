@@ -1,0 +1,22 @@
+<h1>Lists</h1>
+
+<% @lists.each do |l| %>
+    <ul>
+        <p>
+            <%= l.title %> |
+            <%= link_to "编辑", edit_board_list_path(@board, l)  %> |
+            <%= link_to "删除", board_list_path(@board, l), method: "delete" %>
+        </p>
+        <% l.cards.each do |c| %>
+            <li>
+                <%= c.title %> |
+                <%= link_to "编辑", edit_board_list_card_path(@board, l, c) %> |
+                <%= link_to "删除", board_list_card_path(@board, l, c), method: "delete" %>
+            </li>
+        <% end %>
+        <%= link_to "添加卡片", new_board_list_card_path(@board,l) %>
+    </ul>
+<% end %>
+
+<hr />
+<%= link_to "添加列表", new_board_list_path(@board) %>

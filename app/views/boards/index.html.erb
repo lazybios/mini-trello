@@ -1,0 +1,13 @@
+<h1>Boards List</h1>
+<% @boards.each do  |b| %>
+    <ul>
+        <li>
+            <%= link_to b.name, board_lists_path(b) %> |
+            <%= link_to "编辑", edit_board_path(b) %> |
+            <%= link_to "删除", board_path(b), method: "delete" %>
+        </li>
+    </ul>
+<% end %>
+
+<hr />
+<%= link_to "添加看板", new_board_path %>

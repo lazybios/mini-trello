@@ -1,0 +1,57 @@
+class CardsController < ApplicationController
+  before_action :require_user
+  before_action :set_board_and_list, only: [:new, :create, :edit, :update, :destroy]
+
+  def index
+  end
+
+  def show
+  end
+
+  def edit
+    @card = Card.find_by_id(params[:id])
+  end
+
+  def update
+    @card = Card.find_by_id(params[:id])
+    if @card.update(card_params)
+      flash[:success] = "更新成功"
+      redirect_to board_lists_path(@board)
+    else
+      flash[:fail] = "更新失败"
+      render :new
+    end
+  end
+
+  def new
+    @card = Card.new
+  end
+
+  def create
+    if Card.create(card_params.merge(list_id: @list.id))
+      flash[:success] = "添加成功"
+      redirect_to board_lists_path(@board)
+    else
+      flash[:fail] = "添加失败"
+      render :new
+    end
+  end
+
+  def destroy
+    @card = Card.find_by_id(params[:id])
+    @card.destroy
+    redirect_to board_lists_path(@board)
+  end
+
+  private
+
+  def set_board_and_list
+    @board = Board.find_by_id(params[:board_id])
+    @list = List.find_by_id(params[:list_id])
+  end
+
+  def card_params
+    params.require(:card).permit(:title, :position, :description, :due_date)
+  end
+
+end

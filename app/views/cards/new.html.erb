@@ -1,0 +1,12 @@
+<h1>创建卡片</h1>
+<%= form_for :card, url: board_list_cards_path do |f|%>
+    <p>标题</p>
+    <p><%= f.text_field :title %></p>
+    <p>位置</p>
+    <p><%= f.text_field :position %></p>
+    <p>备注</p>
+    <p><%= f.text_area :description, size: '30x10' %></p>
+    <p>到期时间</p>
+    <p><%= f.text_field :due_date %></p>
+    <p><%= f.submit "创建" %></p>
+<% end %>
