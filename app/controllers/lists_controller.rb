@@ -3,7 +3,7 @@ class ListsController < ApplicationController
   before_action :set_board, only: [:new, :create, :index, :destroy, :edit, :update]
 
   def index
-    @lists = @board.lists
+    @lists = @board.lists.where(is_delete: false)
   end
 
   def show
@@ -14,7 +14,10 @@ class ListsController < ApplicationController
   end
 
   def create
-    if List.create(list_params.merge(board_id: @board.id))
+    @list =  List.new(list_params)
+    @list.board_id = @board.id
+    if @list.save
+      track_activity @list
       flash[:success] = "创建成功"
       redirect_to :board_lists
     else
@@ -30,6 +33,7 @@ class ListsController < ApplicationController
   def update
     @list = List.find_by_id(params[:id])
     if @list.update(list_params.merge(board_id: @board.id))
+      track_activity @list
       flash[:success] = "更新成功"
       redirect_to :board_lists
     else
@@ -39,8 +43,9 @@ class ListsController < ApplicationController
   end
 
   def destroy
-    list = List.find_by_id(params[:id])
-    list.destroy
+    @list = List.find_by_id(params[:id])
+    @list.update_attribute(:is_delete, true)
+    track_activity @list
     redirect_to :board_lists
   end
 

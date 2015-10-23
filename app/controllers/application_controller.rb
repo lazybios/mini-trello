@@ -14,6 +14,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  helper_method :current_user
+  def track_activity(trackable, action = params[:action])
+    current_user.activities.create! action: action, trackable: trackable
+  end
+
+  def enable_cards(list)
+    Card.where(list_id: list.id, is_delete: false)
+  end
+
+  helper_method :current_user, :enable_cards
 
 end

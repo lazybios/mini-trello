@@ -15,6 +15,7 @@ class CardsController < ApplicationController
   def update
     @card = Card.find_by_id(params[:id])
     if @card.update(card_params)
+      track_activity @card
       flash[:success] = "更新成功"
       redirect_to board_lists_path(@board)
     else
@@ -28,7 +29,10 @@ class CardsController < ApplicationController
   end
 
   def create
-    if Card.create(card_params.merge(list_id: @list.id))
+    @card = Card.new(card_params)
+    @card.list_id = @list.id
+    if @card.save
+      track_activity @card
       flash[:success] = "添加成功"
       redirect_to board_lists_path(@board)
     else
@@ -39,7 +43,8 @@ class CardsController < ApplicationController
 
   def destroy
     @card = Card.find_by_id(params[:id])
-    @card.destroy
+    @card.update_attribute(:is_delete, true)
+    track_activity @card
     redirect_to board_lists_path(@board)
   end
 

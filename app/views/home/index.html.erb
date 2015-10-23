@@ -1,6 +1,6 @@
 <h1>Mini-Trello Develop Todo</h1>
 <% if current_user %>
-    <p><%= current_user.username %> | <%= link_to "登出", :logout, method: "delete" %></p>
+    <p><%= current_user.username %> | <%= link_to "登出", :logout, method: "delete" %> | <%= link_to "动态", :activities %></p>
 <% else %>
     <p><%= link_to "登录", :login %>|<%= link_to "注册", :signup %></p>
 <% end %>
@@ -15,15 +15,20 @@
     </ul>
     <li>看板(Boards)</li>
     <ul>
-        <li>创建看板</li>
-        <li>展示用户所有看板</li>
-        <li>修改看板元信息</li>
-        <li>删除看板</li>
+        <li><del>创建看板</del></li>
+        <li><del>展示用户所有看板</del></li>
+        <li><del>修改看板元信息</del></li>
+        <li><del>删除看板</del></li>
     </ul>
     <li>列表(Lists)</li>
+    <ul>
+        <li>ajax</li>
+        <li>拖动、点击可编辑</li>
+    </ul>
     <li>卡片(Cards)</li>
     <li>卡片留言讨论(CardComments)</li>
-    <li>活动通知</li>
+    <li><del>活动通知</del></li>
+    <li>任务标签</li>
 </ul>
 
 

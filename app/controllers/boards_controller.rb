@@ -7,7 +7,9 @@ class BoardsController < ApplicationController
   end
 
   def create
-    if Board.create(board_params)
+    @board = Board.new(board_params)
+    if @board.save
+      track_activity @board
       flash[:success] = "创建成功"
       redirect_to :boards
     else
@@ -17,7 +19,7 @@ class BoardsController < ApplicationController
   end
 
   def index
-    @boards = Board.all
+    @boards = Board.where(is_delete: false)
   end
 
   # def show
@@ -29,6 +31,7 @@ class BoardsController < ApplicationController
 
   def update
     if @board.update(board_params)
+      track_activity @board
       flash[:success] = "创建成功"
       redirect_to :boards
     else
@@ -38,7 +41,8 @@ class BoardsController < ApplicationController
   end
 
   def destroy
-    @board.destroy
+    @board.update_attribute(:is_delete, true)
+    track_activity @board
     redirect_to :boards
   end
 

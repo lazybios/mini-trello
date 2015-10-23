@@ -1,35 +1,5 @@
 Rails.application.routes.draw do
-  get 'cards/index'
-
-  get 'cards/show'
-
-  get 'cards/edit'
-
-  get 'cards/update'
-
-  get 'cards/new'
-
-  get 'cards/create'
-
-  get 'lists/index'
-
-  get 'lists/show'
-
-  get 'lists/new'
-
-  get 'lists/create'
-
-  get 'lists/edit'
-
-  get 'lists/update'
-
-  get 'boards/index'
-
-  get 'boards/show'
-
-  get 'boards/delete'
-
-  get 'boards/create'
+  get 'activities/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -50,6 +20,8 @@ Rails.application.routes.draw do
       resources :cards
     end
   end
+
+  resources :activities
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
