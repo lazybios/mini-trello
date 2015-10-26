@@ -7,7 +7,7 @@ class BoardsController < ApplicationController
   end
 
   def create
-    @board = Board.new(board_params)
+    @board = current_user.boards.new(board_params)
     if @board.save
       track_activity @board
       flash[:success] = "创建成功"
@@ -20,6 +20,7 @@ class BoardsController < ApplicationController
 
   def index
     @boards = Board.where(is_delete: false)
+    @boards = current_user.boards.where(is_delete: false)
   end
 
   # def show
