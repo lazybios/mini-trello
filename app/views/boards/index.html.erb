@@ -1,13 +1,25 @@
-<h1>Boards List</h1>
-<% @boards.each do  |b| %>
-    <ul>
-        <li>
-            <%= link_to b.name, board_lists_path(b) %> |
-            <%= link_to "编辑", edit_board_path(b) %> |
-            <%= link_to "删除", board_path(b), method: "delete" %>
-        </li>
-    </ul>
-<% end %>
+        <div class="wrapper clearfix">
+            <div class="main clearfix">
+                <ul>
+                    <% @boards.each do  |b| %>
+                        <%= render  partial: 'board', locals: {board: b} %>
+                    <% end %>
+                    <li class="create-board">Create Board...</li>
+                </ul>
+            </div>
 
-<hr />
-<%= link_to "添加看板", new_board_path %>
+        </div>
+        <div class="bg">
+        </div>
+        <div class="add-form">
+            <span class="close-icon">close</span>
+            <%= form_for @board, remote: true do |f| %>
+                <p>看板名字</p>
+                <p><%= f.text_field :name %></p>
+                <p>看板描述</p>
+                <p><%= f.text_area :description, size: '30x4' %></p>
+                <p>看板权限</p>
+                <p><%= f.select :permission, options_for_select([['公开', 'public'], ['私有', 'private']]) %></p>
+                <p><%= f.submit "创建" %></p>
+            <% end %>
+        </div>

@@ -1,0 +1,4 @@
+<li id="board_<%= board.id %>">
+    <%= link_to board.name, board_lists_path(board) %>
+    <span><%= link_to "删除", board_path(board), remote: true, :data => { :confirm => "确定要删除此看板?" }, method: "delete" %></span>
+</li>

@@ -12,4 +12,65 @@
  *
  *= require_tree .
  *= require_self
+ *= require normalize
  */
+
+
+body {
+  background: #f9f9f9;
+  color: #555; }
+
+a {
+  text-decoration: none;
+  color: #3aa3e3; }
+
+ul {
+  padding: 0; }
+
+li {
+  list-style: none; }
+
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */ }
+
+.clearfix:after {
+  clear: both; }
+
+.clearfix {
+  *zoom: 1; }
+
+header {
+  background: #fff;
+  height: 4rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100; }
+
+.logo {
+  padding: 0 0.6rem 0 1.25rem;
+  height: 4rem;
+  display: inline-block;
+  font-size: 1.8rem;
+  line-height: 4rem; }
+
+.header_nav {
+  position: absolute;
+  margin-right: .75rem;
+  right: 0;
+  top: 0;
+  height: 5rem; }
+  .header_nav a {
+    display: inline-block;
+    padding: 1.3rem 0.7rem;
+    font-size: 1rem;
+    font-weight: 700; }
+
+footer {
+  text-align: center; }

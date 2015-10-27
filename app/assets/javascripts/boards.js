@@ -1,0 +1,10 @@
+$(document).ready(function(){
+    $('.close-icon').click(function(){
+        $('.bg').css({'display':'none'});
+        $('.add-form').css({'display':'none'});
+    });
+    $('.create-board').click(function(){
+        $('.bg').css({'display':'block'});
+        $('.add-form').css({'display':'block'});
+    });
+});
