@@ -11,7 +11,7 @@
                             <div class="list-cards">
                                 <% enable_cards(list).each do |c| %>
                                     <div class="card">
-                                        <%= link_to c.title, edit_board_list_card_path(@board, list, c) %> |
+                                        <%= link_to c.title, board_list_card_path(@board, list, c) %> |
                                     </div>
                                 <% end %>
                                 <a class="open-card" href="#">Add a card…</a>

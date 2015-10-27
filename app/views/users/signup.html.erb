@@ -1,10 +1,12 @@
-<h1>注册</h1>
-<%= form_for @user do |f|%>
-    <p>用户名</p>
-    <p><%= f.text_field :username %></p>
-    <p>密码</p>
-    <p><%= f.password_field :password %></p>
-    <p>密码确认</p>
-    <p><%= f.password_field :password_confirmation %></p>
-    <p><%= f.submit "注册" %></p>
-<% end %>
+        <div class="wrapper clearfix">
+            <div class="main clearfix">
+                <div class="control">
+                    <%= form_for @user do |f|%>
+                        <p>　　账号: <%= f.text_field :username %></p>
+                        <p>　　密码: <%= f.password_field :password %></p>
+                        <p>确认密码: <%= f.password_field :password_confirmation %></p>
+                        <p class="submit-btn"><%= f.submit "注册" %></p>
+                    <% end %>
+                </div>
+            </div>
+        </div>

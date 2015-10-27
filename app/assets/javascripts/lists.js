@@ -4,7 +4,8 @@ $(document).ready(function(){
         $('.add-new-card').css({'display':'block'});
     });
 
-    $('#cancel').click(function(){
+    $('#cancel').click(function(e){
+        e.preventDefault();
         $('.add-new-card').css({'display':'none'});
         $('.open-card').css({'display':'block'});
     });
