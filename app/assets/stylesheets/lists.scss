@@ -40,6 +40,13 @@
             margin: 10px 0;
             padding: 15px;
             border-radius: 3px;
+            .card-title-input {
+                width: 100%;
+                display: block;
+                box-sizing: border-box;
+                padding: 4px;
+                color: #555;
+            }
             a {
                 color: #3aa3e3;
             }
@@ -73,5 +80,9 @@
             }
         }
     }
+}
+
+.add-new-card {
+    display: none;
 }
 

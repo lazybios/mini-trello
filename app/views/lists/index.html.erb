@@ -1,21 +1,3 @@
-<%# <% @lists.each do |list| %>
-<%#     <ul>
-<%#         <p>
-<%#             <%= list.title %> |
-<%#             <%= link_to "编辑", edit_board_list_path(@board, list)  %> |
-<%#             <%= link_to "删除", board_list_path(@board, list), method: "delete" %>
-<%#         </p>
-<%#         <% enable_cards(list).each do |c| %>
-<%#             <li>
-<%#                 <%= c.title %> |
-<%#                 <%= link_to "编辑", edit_board_list_card_path(@board, list, c) %> |
-<%#                 <%= link_to "删除", board_list_card_path(@board, list, c), method: "delete" %>
-<%#             </li>
-<%#         <% end %>
-<%#         <%= link_to "添加卡片", new_board_list_card_path(@board,list) %>
-<%#     </ul>
-<%# <% end %>
-<%# <%= link_to "添加列表", new_board_list_path(@board) %>
         <div class="wrapper clearfix">
             <div class="main clearfix">
                 <%= @board.name %>
@@ -29,10 +11,16 @@
                             <div class="list-cards">
                                 <% enable_cards(list).each do |c| %>
                                     <div class="card">
-                                        <a href="#"><%= c.title %></a>
+                                        <%= link_to c.title, edit_board_list_card_path(@board, list, c) %> |
                                     </div>
                                 <% end %>
                                 <a class="open-card" href="#">Add a card…</a>
+                                <div class="card add-new-card">
+                                    <%= form_for :card, url: board_list_cards_path(list_id: list.id), remote: true do |f|%>
+                                        <%= f.text_field :title, class: 'card-title-input' %>
+                                        <p> <%= f.submit "创建" %>  <%= f.button "取消", id: 'cancel' %>%</p>
+                                    <% end %>
+                                </div>
                             </div>
                         </li>
                     <% end %>

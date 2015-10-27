@@ -33,8 +33,10 @@ class CardsController < ApplicationController
     @card.list_id = @list.id
     if @card.save
       track_activity @card
-      flash[:success] = "添加成功"
-      redirect_to board_lists_path(@board)
+      respond_to do |format|
+        format.html { redirect_to board_lists_path(@board), success: "添加成功" }
+        format.js
+      end
     else
       flash[:fail] = "添加失败"
       render :new
