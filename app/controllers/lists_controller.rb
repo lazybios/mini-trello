@@ -4,6 +4,7 @@ class ListsController < ApplicationController
 
   def index
     @lists = @board.lists.where(is_delete: false)
+    @list = List.new
   end
 
   def show
@@ -18,8 +19,10 @@ class ListsController < ApplicationController
     @list.board_id = @board.id
     if @list.save
       track_activity @list
-      flash[:success] = "创建成功"
-      redirect_to :board_lists
+      respond_to do |format|
+        format.html { redirect_to :board_lists, success: "创建成功" }
+        format.js
+      end
     else
       flash[:fail] = "创建失败"
       render :new
@@ -46,7 +49,10 @@ class ListsController < ApplicationController
     @list = List.find_by_id(params[:id])
     @list.update_attribute(:is_delete, true)
     track_activity @list
-    redirect_to :board_lists
+    respond_to do |format|
+      format.html { redirect_to :board_lists }
+      format.js
+    end
   end
 
   private

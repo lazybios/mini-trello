@@ -1,22 +1,49 @@
-<h1>Lists</h1>
-
-<% @lists.each do |list| %>
-    <ul>
-        <p>
-            <%= list.title %> |
-            <%= link_to "编辑", edit_board_list_path(@board, list)  %> |
-            <%= link_to "删除", board_list_path(@board, list), method: "delete" %>
-        </p>
-        <% enable_cards(list).each do |c| %>
-            <li>
-                <%= c.title %> |
-                <%= link_to "编辑", edit_board_list_card_path(@board, list, c) %> |
-                <%= link_to "删除", board_list_card_path(@board, list, c), method: "delete" %>
-            </li>
-        <% end %>
-        <%= link_to "添加卡片", new_board_list_card_path(@board,list) %>
-    </ul>
-<% end %>
-
-<hr />
-<%= link_to "添加列表", new_board_list_path(@board) %>
+<%# <% @lists.each do |list| %>
+<%#     <ul>
+<%#         <p>
+<%#             <%= list.title %> |
+<%#             <%= link_to "编辑", edit_board_list_path(@board, list)  %> |
+<%#             <%= link_to "删除", board_list_path(@board, list), method: "delete" %>
+<%#         </p>
+<%#         <% enable_cards(list).each do |c| %>
+<%#             <li>
+<%#                 <%= c.title %> |
+<%#                 <%= link_to "编辑", edit_board_list_card_path(@board, list, c) %> |
+<%#                 <%= link_to "删除", board_list_card_path(@board, list, c), method: "delete" %>
+<%#             </li>
+<%#         <% end %>
+<%#         <%= link_to "添加卡片", new_board_list_card_path(@board,list) %>
+<%#     </ul>
+<%# <% end %>
+<%# <%= link_to "添加列表", new_board_list_path(@board) %>
+        <div class="wrapper clearfix">
+            <div class="main clearfix">
+                <%= @board.name %>
+                <ul class="lists">
+                    <% @lists.each do |list| %>
+                        <li class="cards" id="list-<%= list.id %>">
+                            <div class="list-header">
+                                <%= list.title %>
+                                <%= link_to "删除", board_list_path(@board, list), method: "delete", remote: true, :data => { :confirm => "删除是不可逆的，确定?" } %>
+                            </div>
+                            <div class="list-cards">
+                                <% enable_cards(list).each do |c| %>
+                                    <div class="card">
+                                        <a href="#"><%= c.title %></a>
+                                    </div>
+                                <% end %>
+                                <a class="open-card" href="#">Add a card…</a>
+                            </div>
+                        </li>
+                    <% end %>
+                    <li class="add-list">
+                        <%= form_for @list, url: board_lists_path(@board), remote: true do |f| %>
+                            <%= f.text_field :title, class: "list-title-input", placeholder: "Add a list..." %>
+                            <div class="edit-controls keep u-clearfix">
+                                <p><%= f.submit "创建"%></p>
+                            </div>
+                        <% end %>
+                    </li>
+                </ul>
+            </div>
+        </div>

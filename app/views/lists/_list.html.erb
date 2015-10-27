@@ -1,0 +1,14 @@
+<li class="cards">
+    <div class="list-header">
+        <%= list.title %>
+        <%= link_to "删除", board_list_path(@board, list), method: "delete" %>
+    </div>
+    <div class="list-cards">
+        <% enable_cards(list).each do |c| %>
+            <div class="card">
+                <a href="#"><%= c.title %></a>
+            </div>
+        <% end %>
+        <a class="open-card" href="#">Add a card…</a>
+    </div>
+</li>
