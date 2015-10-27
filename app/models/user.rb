@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
   has_many :activities, :dependent => :destroy
   has_many :boards, :dependent => :destroy
+  has_many :comments, :dependent => :destroy
 
 
   private

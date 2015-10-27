@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'comments/new'
+
+  get 'comments/create'
+
+  get 'comments/destroy'
+
   get 'activities/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -15,13 +21,16 @@ Rails.application.routes.draw do
   delete "logout" => "users#logout", as: 'logout'
   resources :users, only:[:create]
 
+
   resources :boards do
     resources :lists do
-      resources :cards
+      resources :cards do
+      end
     end
   end
 
   resources :activities
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
