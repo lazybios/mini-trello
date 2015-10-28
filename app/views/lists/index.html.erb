@@ -1,9 +1,9 @@
         <div class="wrapper clearfix">
             <div class="main clearfix">
                 <span id="board-name" data-id="<%= @board.id %>"><%= @board.name %></span>
-                <ul class="lists">
+                <ul class="lists sortable-outer">
                     <% @lists.each do |list| %>
-                        <li class="cards" id="list-<%= list.id %>">
+                        <li class="cards" id="list-<%= list.id %>" data-id="<%= list.id %>">
                             <div class="list-header">
                                 <%= list.title %>
                                 <%= link_to "删除", list_path(list), method: "delete", remote: true, :data => { :confirm => "删除是不可逆的，确定?" } %>
@@ -27,7 +27,7 @@
                             </div>
                         </li>
                     <% end %>
-                    <li class="add-list">
+                    <li class="disabled add-list">
                         <%= form_for @list, url: board_lists_path(@board) do |f| %>
                             <%= f.text_field :title, class: "list-title-input", placeholder: "Add a list..." %>
                             <div class="edit-controls keep u-clearfix">

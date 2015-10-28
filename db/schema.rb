@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151028050430) do
+ActiveRecord::Schema.define(version: 20151028130817) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "user_id",        limit: 4
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 20151028050430) do
 
   create_table "lists", force: :cascade do |t|
     t.string   "title",      limit: 255
-    t.integer  "position",   limit: 4
+    t.integer  "position",   limit: 4,   default: 0
     t.integer  "board_id",   limit: 4
     t.integer  "user_id",    limit: 4
     t.datetime "created_at",                             null: false

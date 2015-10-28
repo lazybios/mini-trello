@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require jquery.editable
-//= require_tree .
+//= require html.sortable
+///= require_tree .

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   put 'cards/description' => 'cards#description'
   put 'cards/title' => 'cards#title'
+  put 'lists/sort' => 'lists#sort'
 
   resources :boards, shallow: true do
     put 'name', on: :collection

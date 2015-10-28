@@ -3,7 +3,7 @@ class ListsController < ApplicationController
   before_action :set_board, only: [:new, :create, :index, :destroy, :edit, :update]
 
   def index
-    @lists = @board.lists.where(is_delete: false)
+    @lists = @board.lists.where(is_delete: false).order(position: :asc)
     @list = List.new
   end
 
@@ -17,6 +17,9 @@ class ListsController < ApplicationController
   def create
     @list = List.new(list_params)
     @list.board_id = @board.id
+    if not @board.lists.blank?
+      @list.position = @board.lists.maximum(:position).next
+    end
     if @list.save
       track_activity @list
       respond_to do |format|
@@ -50,6 +53,13 @@ class ListsController < ApplicationController
       format.html { redirect_to board_lists_path(@list.board) }
       format.js
     end
+  end
+
+  def sort
+    params[:order].each do |k, v|
+      List.find(v[:id]).update_attribute(:position, v[:position])
+    end
+    render :nothing => true
   end
 
   private
