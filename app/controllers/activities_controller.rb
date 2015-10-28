@@ -5,3 +5,5 @@ class ActivitiesController < ApplicationController
     @activities = current_user.activities.order('created_at desc')
   end
 end
+
+

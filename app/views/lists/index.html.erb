@@ -14,18 +14,21 @@
                                         <%= link_to c.title, card_path(c) %>
                                     </div>
                                 <% end %>
-                                <a class="open-card" href="#">Add a card…</a>
-                                <div class="card add-new-card">
+                                <a class="open-card" id="open-card-<%= list.id %>" data-id=<%= list.id %> href="#">Add a card…</a>
+                                <div class="card add-new-card" id="new-card-<%= list.id %>">
                                     <%= form_for :card, url: list_cards_path(list_id: list.id), remote: true do |f|%>
                                         <%= f.text_field :title, class: 'card-title-input' %>
-                                        <p> <%= f.submit "创建", class: "btn" %>  <%= link_to "取消", id: 'cancel', class: "btn" %>%</p>
+                                        <p>
+                                            <%= f.submit "创建", class: "btn" %>
+                                            <%= link_to "取消", '', class: 'cancel',  data: {id: list.id} %>
+                                        </p>
                                     <% end %>
                                 </div>
                             </div>
                         </li>
                     <% end %>
                     <li class="add-list">
-                        <%= form_for @list, url: board_lists_path(@board), remote: true do |f| %>
+                        <%= form_for @list, url: board_lists_path(@board) do |f| %>
                             <%= f.text_field :title, class: "list-title-input", placeholder: "Add a list..." %>
                             <div class="edit-controls keep u-clearfix">
                                 <p><%= f.submit "创建", class: "btn"%></p>

@@ -1,12 +1,14 @@
 $(document).ready(function(){
-    $('.open-card').click(function(){
+    $('.main').on('click', '.open-card', function(){
         $(this).css({'display': 'none'});
-        $('.add-new-card').css({'display':'block'});
+        $('#new-card-'+ $(this).data('id')).css({'display':'block'});
     });
 
-    $('#cancel').click(function(e){
+    $('.cancel').click(function(e){
+        id = $(this).data('id')
+        $('#open-card-'+id).css({'display': 'block'});
+        $('#new-card-'+id).css({'display':'none'});
         e.preventDefault();
-        $('.add-new-card').css({'display':'none'});
-        $('.open-card').css({'display':'block'});
     });
+
 });

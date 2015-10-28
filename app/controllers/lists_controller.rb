@@ -46,7 +46,7 @@ class ListsController < ApplicationController
     @list.update_attribute(:is_delete, true)
     track_activity @list
     respond_to do |format|
-      format.html { redirect_to :board_lists }
+      format.html { redirect_to board_lists_path(@list.board) }
       format.js
     end
   end
