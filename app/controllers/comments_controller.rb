@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action: :require_user
+  before_action :require_user
 
   def index
     card = Card.find(params[:card_id])
