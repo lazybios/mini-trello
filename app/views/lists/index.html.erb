@@ -1,6 +1,6 @@
         <div class="wrapper clearfix">
             <div class="main clearfix">
-                <%= @board.name %>
+                <span id="board-name" data-id="<%= @board.id %>"><%= @board.name %></span>
                 <ul class="lists">
                     <% @lists.each do |list| %>
                         <li class="cards" id="list-<%= list.id %>">

@@ -13,13 +13,18 @@ Rails.application.routes.draw do
   delete 'logout' => 'users#logout', as: 'logout'
   resources :users, only:[:create]
 
+  put 'cards/description' => 'cards#description'
+  put 'cards/title' => 'cards#title'
+
   resources :boards, shallow: true do
+    put 'name', on: :collection
     resources :lists do
       resources :cards do
         resources :comments
       end
     end
   end
+
 
   resources :activities
 

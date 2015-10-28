@@ -1,13 +1,15 @@
 <div class="wrapper clearfix">
     <div class="card-detail">
         <div class="card-detail-title">
-            <h2 class="card-detail-title-name"><%= @card.title %></h2>
+            <h2 class="card-detail-title-name" data-id="<%= @card.id %>"><%= @card.title %></h2>
             <%= link_to "删除", card_path(@card), method: "delete" %>
         </div>
         <h3 class="card-description">描述</h3>
         <% if @card.description.blank? %>
+            <p id="card-desc"><%= @card.description %></p>
             <a class="card-description-add">Add</a>
         <% else %>
+            <p id="card-desc"><%= @card.description %></p>
             <a class="card-description-add">Edit</a>
         <% end %>
         <h2 class="card-comment">讨论</h2> 

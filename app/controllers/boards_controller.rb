@@ -31,11 +31,9 @@ class BoardsController < ApplicationController
   def update
     if @board.update(board_params)
       track_activity @board
-      flash[:success] = '创建成功'
-      redirect_to :boards
+      redirect_to :boards, success: '创建成功'
     else
-      flash[:fail] = '更新失败'
-      render :edit
+      render :edit, fail: '更新失败'
     end
   end
 
@@ -46,6 +44,12 @@ class BoardsController < ApplicationController
       format.html { redirect_to :boards }
       format.js
     end
+  end
+
+  def name
+    @board = Board.find(params[:board][:id])
+    @board.update_attribute(:name, params[:board][:name])
+    render :nothing => true
   end
 
   private

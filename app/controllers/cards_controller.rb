@@ -50,6 +50,18 @@ class CardsController < ApplicationController
     redirect_to board_lists_path(@board)
   end
 
+  def title
+    @card = Card.find(params[:card][:id])
+    @card.update_attribute(:title, params[:card][:title])
+    render :nothing => true
+  end
+
+  def description
+    @card = Card.find(params[:card][:id])
+    @card.update_attribute(:description, params[:card][:description])
+    render :nothing => true
+  end
+
   private
 
   def set_board_and_list
