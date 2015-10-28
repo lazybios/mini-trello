@@ -11,14 +11,11 @@ class BoardsController < ApplicationController
     if @board.save
       track_activity @board
       respond_to do |format|
-        format.html {
-          redirect_to :boards, success: "创建成功"
-        }
+        format.html { redirect_to :boards, success: '创建成功' }
         format.js
       end
     else
-      flash[:fail] = "创建失败"
-      render :new
+      render :new, fail: '创建失败'
     end
   end
 
@@ -28,20 +25,16 @@ class BoardsController < ApplicationController
     @board = Board.new
   end
 
-  # def show
-  #   @lists = @board.lists
-  # end
-
   def edit
   end
 
   def update
     if @board.update(board_params)
       track_activity @board
-      flash[:success] = "创建成功"
+      flash[:success] = '创建成功'
       redirect_to :boards
     else
-      flash[:fail] = "更新失败"
+      flash[:fail] = '更新失败'
       render :edit
     end
   end
@@ -64,5 +57,4 @@ class BoardsController < ApplicationController
   def board_params
     params.require(:board).permit(:name, :description, :permission)
   end
-
 end

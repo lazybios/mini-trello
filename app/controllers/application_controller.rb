@@ -7,11 +7,8 @@ class ApplicationController < ActionController::Base
     @current_user || User.find_by_token(session[:token]) if session[:token]
   end
 
-
   def require_user
-    if current_user.blank?
-      redirect_to :login
-    end
+    redirect_to :login if current_user.blank?
   end
 
   def track_activity(trackable, action = params[:action])
@@ -27,5 +24,4 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :current_user, :enable_cards, :enable_comments
-
 end

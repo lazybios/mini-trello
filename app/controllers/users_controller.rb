@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   def signup
     @user = User.new
   end
@@ -8,8 +7,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:token] = @user.token
-      flash[:success] = "注册成功"
-      redirect_to :root
+      redirect_to :root, success: '注册成功'
     else
       flash[:fail] = @user.errors
       render :signup
@@ -23,9 +21,9 @@ class UsersController < ApplicationController
     user = User.find_by_username(params[:user][:username])
     if user && user.authenticate(params[:user][:password])
       session[:token] = user.token
-      redirect_to :root, success: "登录成功"
+      redirect_to :root, success: '登录成功'
     else
-      render :login, fail: "登录失败"
+      render :login, fail: '登录失败'
     end
   end
 

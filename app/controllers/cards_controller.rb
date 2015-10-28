@@ -7,9 +7,7 @@ class CardsController < ApplicationController
 
   def show
     @card = Card.where(is_delete: false, id: params[:id]).first
-    if @card.blank?
-      redirect_to :boards
-    end
+    redirect_to :boards if @card.blank?
   end
 
   def edit
@@ -20,11 +18,9 @@ class CardsController < ApplicationController
     @card = Card.find_by_id(params[:id])
     if @card.update(card_params)
       track_activity @card
-      flash[:success] = "更新成功"
-      redirect_to board_lists_path(@board)
+      redirect_to board_lists_path(@board), success: '更新成功'
     else
-      flash[:fail] = "更新失败"
-      render :new
+      render :new, fail: '更新失败'
     end
   end
 
@@ -38,12 +34,11 @@ class CardsController < ApplicationController
     if @card.save
       track_activity @card
       respond_to do |format|
-        format.html { redirect_to board_lists_path(@board), success: "添加成功" }
+        format.html { redirect_to board_lists_path(@board), success: '添加成功' }
         format.js
       end
     else
-      flash[:fail] = "添加失败"
-      render :new
+      render :new, fail: '添加失败'
     end
   end
 
@@ -65,5 +60,4 @@ class CardsController < ApplicationController
   def card_params
     params.require(:card).permit(:title, :position, :description, :due_date)
   end
-
 end

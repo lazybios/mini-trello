@@ -11,15 +11,15 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @comment.user_id = current_user.id
-    track_activity @comment
     @comment.card_id = params[:card_id]
+    track_activity @comment
     if @comment.save
       respond_to do |format|
-        format.html { redirect_to card_comments_path(card_id: params[:card_id]), success: "添加成功" }
+        format.html { redirect_to card_comments_path(card_id: params[:card_id]), success: '添加成功' }
         format.js
       end
     else
-      redirect_to card_comments_path(card_id: params[:card_id]), success: "添加失败"
+      redirect_to card_comments_path(card_id: params[:card_id]), success: '添加失败'
     end
   end
 
@@ -34,6 +34,7 @@ class CommentsController < ApplicationController
   end
 
   private
+
   def comment_params
     params.require(:comment).permit(:body)
   end
