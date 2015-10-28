@@ -1,3 +1,4 @@
 $('#open-card-<%= @card.list.id %>').before('<%= j render partial: 'card', locals: {card: @card } %>')
 $('.add-new-card').css({'display':'none'});
 $('.open-card').css({'display':'block'});
+$('.sortable-inner').sortable('reload');

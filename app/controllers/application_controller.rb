@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def enable_cards(list)
-    Card.where(list_id: list.id, is_delete: false)
+    Card.where(list_id: list.id, is_delete: false).order(position: :asc)
   end
 
   def enable_comments(card)

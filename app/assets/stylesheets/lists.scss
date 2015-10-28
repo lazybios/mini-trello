@@ -88,9 +88,13 @@
   margin-bottom: 10px;
 }
 
-.sortable {
-  display: list-item;
+.sortable-placeholder-card {
+  border: 1px dashed #CCC;
+  background-color: #f9f9f9;
+  height: 50px;
+  margin-bottom: 10px;
 }
+
 
 .add-new-card {
     display: none;

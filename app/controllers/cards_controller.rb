@@ -62,6 +62,13 @@ class CardsController < ApplicationController
     render :nothing => true
   end
 
+  def sort
+    params[:order].each do |k,v|
+      Card.find(v[:id]).update_attribute(:position, v[:position])
+    end
+    render :nothing => true
+  end
+
   private
 
   def set_board_and_list
