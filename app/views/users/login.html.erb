@@ -4,7 +4,7 @@
             <%= form_for :user, url: :create_login_session  do |f| %>
                 <p>账号: <%= f.text_field :username %></p>
                 <p>密码: <%= f.password_field :password %></p>
-                <p><%= f.submit "登录" %></p>
+                <p><%= f.submit "登录", class: 'btn' %></p>
             <% end %>
         </div>
     </div>
