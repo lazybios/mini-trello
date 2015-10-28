@@ -6,17 +6,17 @@
                         <li class="cards" id="list-<%= list.id %>">
                             <div class="list-header">
                                 <%= list.title %>
-                                <%= link_to "删除", board_list_path(@board, list), method: "delete", remote: true, :data => { :confirm => "删除是不可逆的，确定?" } %>
+                                <%= link_to "删除", list_path(list), method: "delete", remote: true, :data => { :confirm => "删除是不可逆的，确定?" } %>
                             </div>
                             <div class="list-cards">
                                 <% enable_cards(list).each do |c| %>
                                     <div class="card">
-                                        <%= link_to c.title, board_list_card_path(@board, list, c) %> |
+                                        <%= link_to c.title, card_path(c) %>
                                     </div>
                                 <% end %>
                                 <a class="open-card" href="#">Add a card…</a>
                                 <div class="card add-new-card">
-                                    <%= form_for :card, url: board_list_cards_path(list_id: list.id), remote: true do |f|%>
+                                    <%= form_for :card, url: list_cards_path(list_id: list.id), remote: true do |f|%>
                                         <%= f.text_field :title, class: 'card-title-input' %>
                                         <p> <%= f.submit "创建" %>  <%= f.button "取消", id: 'cancel' %>%</p>
                                     <% end %>
