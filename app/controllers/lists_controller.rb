@@ -1,4 +1,5 @@
 class ListsController < ApplicationController
+  before_action :require_user
   before_action :set_board, only: [:new, :create, :index, :destroy, :edit, :update]
 
   def index
