@@ -7,7 +7,7 @@ describe UsersController do
     end
     it 'POST#login valid user' do
       post :create_login_session, user: FactoryGirl.attributes_for(:user)
-      expect(response).to redirect_to root_url
+      expect(response).to redirect_to boards_url
     end
     it 'POST#login invalid user' do
       post :create_login_session, user: FactoryGirl.attributes_for(:fake_user)
@@ -18,7 +18,7 @@ describe UsersController do
   describe 'user signup' do
     it 'POST#signup successful' do
       post :create, user: FactoryGirl.attributes_for(:user)
-      expect(response).to redirect_to root_url
+      expect(response).to redirect_to boards_url
     end
     it 'POST#signup failed' do
       post :create, user: FactoryGirl.attributes_for(:fake_user)
