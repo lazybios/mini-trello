@@ -1,0 +1,10 @@
+<div class="comment">
+    <a class="member"><img src="https://unsplash.it/100/100/?random" alt=""></a> 
+    <div class="comment-detail">
+        <p><%= @comment.user.username %></p>
+        <div class="comment-body">
+                <p><%= @comment.body %></p>
+        </div>
+        <span class="comment-meta"><%= @comment.created_at %> - <%= link_to "删除", comment_path(@comment), method: "delete", remote: true %></span>
+   </div>
+</div>

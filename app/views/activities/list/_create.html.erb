@@ -1,2 +1,2 @@
 在 <%= link_to activity.trackable.board.name, :boards %> 中创建了列表
-<%= link_to activity.trackable.title, board_lists_path(activity.trackable.board) %> at <%= time_ago_in_words(activity.created_at) %>
+<%= link_to activity.trackable.title, board_lists_path(activity.trackable.board) %> on <%= time_ago_in_words(activity.created_at) %>

@@ -1,6 +1,40 @@
 <div class="wrapper clearfix">
-    <div class="main clearfix">
-        <div class="card-detail">
+    <div class="card-detail">
+        <div class="card-detail-title">
+            <h2 class="card-detail-title-name"><%= @card.title %></h2>
+            <%= link_to "删除", card_path(@card), method: "delete" %>
+        </div>
+        <h3 class="card-description">描述</h3>
+        <% if @card.description.blank? %>
+            <a class="card-description-add">Add</a>
+        <% else %>
+            <a class="card-description-add">Edit</a>
+        <% end %>
+        <h2 class="card-comment">讨论</h2> 
+        <div class="new-comment">
+            <a class="member">
+                <img src="https://unsplash.it/100/100/?random" alt="">
+            </a>
+            <%= form_for :comment, url: card_comments_path(params[:id]), remote: true, html: {class: "card-new-comment-form"} do |f|%>
+                <%= f.text_area :body, placeholder: "Write a comment", class: "editor" %>
+                <div class="add-controls">
+                    <%= f.submit "评论", class: "btn" %>
+                </div>
+            <% end %>
+        </div>
+        <div class="comments">
+            <% enable_comments(@card).each do |comment|%>
+                <div class="comment" id="comment-<%= comment.id %>">
+                    <a class="member"><img src="https://unsplash.it/100/100/?random" alt=""></a> 
+                    <div class="comment-detail">
+                        <p><%= comment.user.username %></p>
+                        <div class="comment-body">
+                            <p><%= comment.body %></p>
+                        </div>
+                        <span class="comment-meta"><%= comment.created_at %> - <%= link_to "删除", comment_path(comment), method: "delete", remote: true %></span>
+                    </div>
+                </div>
+            <% end %>
         </div>
     </div>
 </div>

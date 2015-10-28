@@ -74,3 +74,11 @@ header {
 
 footer {
   text-align: center; }
+
+.btn {
+    padding: 10px;
+    background-color: #3aa3e3;
+    color: #fff;
+    border: 0;
+    border-radius: 2px; 
+}

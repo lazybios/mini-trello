@@ -1,0 +1,10 @@
+<div class="wrapper clearfix">
+    <div class="main clearfix">
+<% @comments.each do |c| %>
+    <div id="comment-<%= c.id %>">
+        <p><%= c.body %></p>
+        <%= link_to "删除", comment_path(c), method: "delete", remote: true %>
+    </div>
+<% end %>
+</div>
+</div>

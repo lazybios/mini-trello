@@ -22,6 +22,10 @@ class ApplicationController < ActionController::Base
     Card.where(list_id: list.id, is_delete: false)
   end
 
-  helper_method :current_user, :enable_cards
+  def enable_comments(card)
+    Comment.where(card_id: card.id, is_delete: false)
+  end
+
+  helper_method :current_user, :enable_cards, :enable_comments
 
 end

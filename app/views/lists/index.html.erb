@@ -18,7 +18,7 @@
                                 <div class="card add-new-card">
                                     <%= form_for :card, url: list_cards_path(list_id: list.id), remote: true do |f|%>
                                         <%= f.text_field :title, class: 'card-title-input' %>
-                                        <p> <%= f.submit "创建" %>  <%= f.button "取消", id: 'cancel' %>%</p>
+                                        <p> <%= f.submit "创建", class: "btn" %>  <%= link_to "取消", id: 'cancel', class: "btn" %>%</p>
                                     <% end %>
                                 </div>
                             </div>
@@ -28,7 +28,7 @@
                         <%= form_for @list, url: board_lists_path(@board), remote: true do |f| %>
                             <%= f.text_field :title, class: "list-title-input", placeholder: "Add a list..." %>
                             <div class="edit-controls keep u-clearfix">
-                                <p><%= f.submit "创建"%></p>
+                                <p><%= f.submit "创建", class: "btn"%></p>
                             </div>
                         <% end %>
                     </li>

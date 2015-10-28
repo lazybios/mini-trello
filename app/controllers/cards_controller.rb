@@ -1,11 +1,15 @@
 class CardsController < ApplicationController
   before_action :require_user
-  before_action :set_board_and_list, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_board_and_list, only: [:new, :create, :edit, :update]
 
   def index
   end
 
   def show
+    @card = Card.where(is_delete: false, id: params[:id]).first
+    if @card.blank?
+      redirect_to :boards
+    end
   end
 
   def edit
@@ -45,6 +49,7 @@ class CardsController < ApplicationController
 
   def destroy
     @card = Card.find_by_id(params[:id])
+    @board = @card.list.board
     @card.update_attribute(:is_delete, true)
     track_activity @card
     redirect_to board_lists_path(@board)

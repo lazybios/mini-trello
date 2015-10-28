@@ -1,0 +1,7 @@
+在卡片 <%= link_to activity.trackable.card.title, card_path(activity.trackable.card.id) %> 中添加了评论
+<div class="comment-in-activity">
+    <%= activity.trackable.body %>
+    <div class="meta">
+        on <%= time_ago_in_words(activity.created_at) %>
+    </div>
+</div>
